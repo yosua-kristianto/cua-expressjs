@@ -1,16 +1,16 @@
-import { Response } from 'express';
-
 export class BaseResponse {
-  public status: boolean = false;
-  public code: string = "500";
-  public message: string = "Internal Server Error";
-  public data!: any;
 
   /**
    * ok
-   *  A static function that return BaseResponse as successful response.
+   * 
+   * A static function that return BaseResponse as successful response.
+   * @param {any} data 
+   * @param {string} message 
+   * @param {Response} res 
+   * @param {string} code 
+   * @returns {Response}
    */
-  static ok(data: any, message: string, res: Response, code: string = "200"): Response {
+  static ok(data, message, res, code = "200") {
     const baseResponse = new BaseResponse();
 
     baseResponse.status = true;
@@ -26,11 +26,23 @@ export class BaseResponse {
   }
 
   /**
-   * error
+   * 
    *  A static function that return BaseResponse as not okay response.
    *  Oftenly used for Internal Server Error.
    */
-  static error(message: string, res: Response, code: string = "500", data?: any | null): Response {
+
+  /**
+   * error
+   * 
+   * A static function that return BaseResponse as not okay response.
+   * Oftenly used for Internal Server Error.
+   * @param {string} message 
+   * @param {Response} res 
+   * @param {string} code 
+   * @param {any | null} data 
+   * @returns {Response}
+   */
+  static error(message, res, code = "500", data) {
     const baseResponse = new BaseResponse();
 
     baseResponse.status = false;
@@ -54,12 +66,13 @@ export class BaseResponse {
    *
    * A static function that return BaseResponse for custom purpose.
    *
-   * @param status
-   * @param code
-   * @param message
-   * @param data
+   * @param {string} message 
+   * @param {Response} res 
+   * @param {string} code 
+   * @param {any | null} data 
+   * @returns {Response}
    */
-  static custom(status: boolean, code: string, message: string, data?: any | null): BaseResponse {
+  static custom(status, code, message, data) {
     const baseResponse = new BaseResponse();
 
     baseResponse.status = status;

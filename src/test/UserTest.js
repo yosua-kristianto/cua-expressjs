@@ -1,8 +1,8 @@
-import {ExampleControllerHandler} from "../main/handler/ExampleControllerHandler";
-import UserRepositoryImpl from "../main/repository/impl/UserRepositoryImpl";
-import {handleTestResult} from "./support/CallbackTemplate";
+import {ExampleControllerHandler} from "../main/handler/ExampleControllerHandler.js";
+import UserRepositoryImpl from "../main/repository/impl/UserRepositoryImpl.js";
+import {handleTestResult} from "./support/CallbackTemplate.js";
 
-async function main(): Promise<void> {
+async function main() {
   const exampleHandler = new ExampleControllerHandler();
 
   // Run test to create User

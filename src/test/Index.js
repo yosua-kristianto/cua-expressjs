@@ -1,5 +1,5 @@
 // Make sure to put any pre-condition to make sure your application is running well in here
-import '../main/config/Database';
+import '../main/config/Database.js';
 
 /**
  * WRITING TEST
@@ -8,8 +8,8 @@ import '../main/config/Database';
  */
 
 async function main() {
-  await require("./ExampleTest");
-  await require("./UserTest");
+  await require("./ExampleTest.js");
+  await require("./UserTest.js");
 }
 
 main().then(() => { console.log("Testing Done. Use CTRL+C or COMMAND+C to close this test run.") });

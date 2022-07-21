@@ -5,7 +5,7 @@
 
 */
 
-export function handleTestResult(e: any): any {
+export function handleTestResult(e) {
 
   if(e instanceof Error){
     console.log(`Test Unsuccesful due to ${e.message}`)

@@ -1,6 +1,6 @@
-import {ExampleControllerHandler} from "../main/handler/ExampleControllerHandler";
+import {ExampleControllerHandler} from "../main/handler/ExampleControllerHandler.js";
 
-async function main(): Promise<void> {
+async function main() {
   const exampleHandler = new ExampleControllerHandler();
 
   if(exampleHandler.addition(10, 11)){

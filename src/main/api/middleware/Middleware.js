@@ -13,7 +13,7 @@
 /**
  * CORS Setting
  */
-import cors from './Cors';
+import cors from './Cors.js';
 
 
 

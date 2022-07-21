@@ -1,9 +1,12 @@
-import {ValidationError} from "express-validator";
-import { ErrorHandler } from "../../config/Exception";
+import { ErrorHandler } from "../../config/Exception.js";
 
 export default class RequestValidationException extends ErrorHandler {
 
-  constructor(errorMessage: Array<ValidationError>) {
+  /**
+   * constructor
+   * @param {Array<ValidationError>} errorMessage 
+   */
+  constructor(errorMessage) {
     super(
       "400",
       `Bad Request - ${(errorMessage[0].msg)}`,

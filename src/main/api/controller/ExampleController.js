@@ -1,17 +1,16 @@
-import { Controller } from './Controller';
-import express, { Request, Response } from 'express';
-import { BaseResponse } from '../../model/dto/BaseResponse';
-import ExampleValidation from '../../common/validation/ExampleValidation';
-import AdditionParamsRequestValidation from "../../common/validation/example/AdditionParamsRequestValidation";
-import {ExampleAgeBelowEightTeenException} from "../../common/exception/example/ExampleAgeBelowEightTeenException";
-import ExampleAgeInputRequestValidation from "../../common/validation/example/ExampleAgeInputRequestValidation";
-import {ExampleControllerHandler} from "../../handler/ExampleControllerHandler";
+import { Controller } from './Controller.js';
+import express from 'express';
+import { BaseResponse } from '../../model/dto/BaseResponse.js';
+import ExampleValidation from '../../common/validation/ExampleValidation.js';
+import AdditionParamsRequestValidation from "../../common/validation/example/AdditionParamsRequestValidation.js";
+import ExampleAgeInputRequestValidation from "../../common/validation/example/ExampleAgeInputRequestValidation.js";
+import {ExampleControllerHandler} from "../../handler/ExampleControllerHandler.js";
 
 const app = express.Router();
 
 class ExampleController extends Controller {
 
-  public routes = (): express.Router => {
+  routes = () => {
 
     /**
      * exampleRest
@@ -24,14 +23,14 @@ class ExampleController extends Controller {
      * @param response 
      * @returns 
      */
-    app.get("/example", (request: Request, response: Response) => BaseResponse.ok(request.body, "Success", response));
+    app.get("/example", (request, response) => BaseResponse.ok(request.body, "Success", response));
 
     /**
      * exampleValidatedRest
      * This API will return every request that sent to body, with constraint of validation provided. 
      * @see ExampleValidation
      */
-    app.post("/example", ExampleValidation, (request: Request, response: Response) => {
+    app.post("/example", ExampleValidation, (request, response) => {
       super.requestValidator(request);
 
       return BaseResponse.ok(request.body, "Success", response);
@@ -41,7 +40,7 @@ class ExampleController extends Controller {
      * exampleHandlerUsage
      * This API will give you an example of using handler.
      */
-    app.post("/addition", AdditionParamsRequestValidation, (request: Request, response: Response) => {
+    app.post("/addition", AdditionParamsRequestValidation, (request, response) => {
       super.requestValidator(request);
 
       return BaseResponse.ok(
@@ -51,7 +50,7 @@ class ExampleController extends Controller {
       );
     });
 
-    app.post("/exception-handling-test", ExampleAgeInputRequestValidation, (request: Request, response: Response) => {
+    app.post("/exception-handling-test", ExampleAgeInputRequestValidation, (request, response) => {
       super.requestValidator(request);
 
       return BaseResponse.ok(

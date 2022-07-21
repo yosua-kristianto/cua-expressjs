@@ -1,11 +1,9 @@
-import { Request, Response, NextFunction } from 'express';
-
 /**
  * cors.ts
  *  This middleware contain 
  */
 
-export default (req: Request, res: Response, next: NextFunction) => {
+export default (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
 

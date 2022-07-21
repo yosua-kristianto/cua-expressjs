@@ -1,14 +1,18 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import express, { Request, Response, NextFunction } from 'express';
+import express from 'express';
 
 import 'express-async-errors'; 
+import EventEmitter from "events";
 
-import config from './config/Config';
-import { Log } from './config/Logging';
+const emitter = new EventEmitter();
+emitter.setMaxListeners(0);
 
-import { BaseResponse } from './model/dto/BaseResponse';
+import config from './config/Config.js';
+import { Log } from './config/Logging.js';
+
+import { BaseResponse } from './model/dto/BaseResponse.js';
 
 const app = express();
 
@@ -48,8 +52,8 @@ Session ${new Date()}
  * Process watcher
  *  Make sure you don't fuck with `logging.ts`'s log file path.
  */
- import "./config/Database";
- import { handleError } from './config/Exception';
+ import "./config/Database.js";
+ import { handleError } from './config/Exception.js';
 
 
 /*
@@ -65,7 +69,7 @@ Session ${new Date()}
 |
 */
 
-import middleware from './api/middleware/Middleware';
+import middleware from './api/middleware/Middleware.js';
 
 /**
  * Loop trough ./api/middleware/middleware.ts
@@ -87,7 +91,7 @@ middleware.forEach((e) => {
 |
 */
 
-import routes from './routes/RouteManagement';
+import routes from './routes/RouteManagement.js';
 app.use('/api', routes);
 
 /*
@@ -99,7 +103,7 @@ app.use('/api', routes);
 | automatically. Feel free to change the behavior.
 |
 */
-app.use((error: any, request: Request, response: Response, next: NextFunction) => {
+app.use((error, request, response, next) => {
 
   console.log(error);
 
@@ -111,7 +115,7 @@ app.use((error: any, request: Request, response: Response, next: NextFunction) =
 
 });
 
-app.use((error: any, response: Response) => response.status(404).json(BaseResponse.custom(false, "404", "Not Found", null)));
+app.use((error, response) => response.status(404).json(BaseResponse.custom(false, "404", "Not Found", null)));
 
 
 /*

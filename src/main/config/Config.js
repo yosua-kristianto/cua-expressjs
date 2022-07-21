@@ -1,8 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { Dialect } from 'sequelize';
-
 export default {
   /*
   |--------------------------------------------------------------------------
@@ -33,7 +31,7 @@ export default {
   database: {
 
     main: {
-      dialect   : (process.env.DB_CONNECTION ?? "postgres") as Dialect,
+      dialect   : (process.env.DB_CONNECTION ?? "postgres"),
       uri       : process.env.DB_HOSTNAME ?? "127.0.0.1",
       port      : parseInt(process.env.DB_PORT ?? "5432"),
       database  : process.env.DB_DATABASE ?? '',

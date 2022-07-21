@@ -1,8 +1,7 @@
 import process from "process";
-import { Log } from "./Logging";
+import { Log } from "./Logging.js";
 
-import { Response } from 'express';
-import { BaseResponse } from '../model/dto/BaseResponse';
+import { BaseResponse } from '../model/dto/BaseResponse.js';
 
 /**
  * ErrorHandler
@@ -11,11 +10,13 @@ import { BaseResponse } from '../model/dto/BaseResponse';
  */
 export class ErrorHandler extends Error {
 
-  statusCode: string;
-  message: string;
-  data?: any;
-
-  constructor(statusCode: string, message: string, data?: any) {
+  /**
+   * 
+   * @param {string} statusCode 
+   * @param {string} message 
+   * @param {*} data 
+   */
+  constructor(statusCode, message, data) {
     super();
     this.statusCode = statusCode;
     this.message = message;
@@ -31,7 +32,7 @@ export class ErrorHandler extends Error {
 /**
  * This is where error being returned as response.
  */
-export const handleError = (res: Response, err: any): Response => {
+export const handleError = (res, err) => {
   Log.e("Unhandled Exception", JSON.stringify(err.stack));
   const { statusCode, message, data } = err;
 
@@ -50,7 +51,7 @@ export const handleError = (res: Response, err: any): Response => {
  *  should be react when Run Time Error is thrown.  
  */
 
-export default process.on('uncaughtException', (err: any, origin: any) => {
+export default process.on('uncaughtException', (err, origin) => {
   Log.e(
     "UNCAUGHT EXCEPTION", 
     `Caught exception: ${err}\n`

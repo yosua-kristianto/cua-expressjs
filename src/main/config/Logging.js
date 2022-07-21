@@ -9,10 +9,10 @@ export class Log {
   * 
   * @return string
   */
-  private static getTimeStamp = (): string => new Date().toISOString();
+  static getTimeStamp = () => new Date().toISOString();
 
-  private static getDate(): string {
-    const date: any = new Date();
+  static getDate() {
+    const date = new Date();
 
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
   }
@@ -21,19 +21,20 @@ export class Log {
    * writeLog
    *  A function to write log message to file.
    *  
-   * @return void
+   * @param {string} str
+   * @return {void}
    */
-  private static writeLog(str: string): void {
+  static writeLog(str) {
     
-    const currentFileName: string = `./logs/${Log.getDate()}.log`;
-    const logFormat: string = `${str}\n`;
+    const currentFileName = `./logs/${Log.getDate()}.log`;
+    const logFormat = `${str}\n`;
 
-    fs.appendFile(currentFileName, logFormat, (appendError: any) => {
+    fs.appendFile(currentFileName, logFormat, (appendError) => {
       if(appendError) {
 
         Log.e("LOG", "Something error when append", appendError);
 
-        fs.writeFile(currentFileName, logFormat, (writeError: any) => {
+        fs.writeFile(currentFileName, logFormat, (writeError) => {
           Log.e("LOG", "Something error when write", writeError);
         });
       }
@@ -47,7 +48,7 @@ export class Log {
    *   A function that print logs on the console as 
    *   an informative message.
    */
-  static i(namespace: string, message: string, object?: any): void {
+  static i(namespace, message, object) {
     let generatedLog = `[${Log.getTimeStamp()}] [INFO] [${namespace}] ${message}`;
 
     if(object) {
@@ -68,7 +69,7 @@ export class Log {
    *   A function that print logs on the console as 
    *   an debug message.
    */
-  static d(namespace: string, message: string, object?: any): void {
+   static d(namespace, message, object) {
      let generatedLog = `[${Log.getTimeStamp()}] [DEBUG] [${namespace}] ${message}`;  
 
      if(object) {
@@ -89,7 +90,7 @@ export class Log {
    *   A function that print logs on the console as 
    *   an error message.
    */
-   static e(namespace: string, message: string, object?: any): void {
+   static e(namespace, message, object) {
     let generatedLog = `[${Log.getTimeStamp()}] [ERROR] [${namespace}] ${message}`;  
     
     if(object) {
@@ -110,7 +111,7 @@ export class Log {
    *   A function that print logs on the console as 
    *   an warning message.
    */
-   static w(namespace: string, message: string, object?: any): void {
+   static w(namespace, message, object) {
     let generatedLog = `[${Log.getTimeStamp()}] [WARNING] [${namespace}] ${message}`;  
     
     if(object) {

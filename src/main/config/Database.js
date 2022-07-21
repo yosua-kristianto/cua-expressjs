@@ -1,15 +1,16 @@
-import { Sequelize } from 'sequelize-typescript';
-import config from './Config';
-import { Log } from './Logging';
+import { Sequelize } from 'sequelize';
+import config from './Config.js';
+import { Log } from './Logging.js';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
-const NAMESPACE: string = "DATABASE";
+const NAMESPACE = "DATABASE";
 
 /**
  * Authenticate the database.
  */
-const mainConnection = (): Sequelize => {
-  let sequelize: Sequelize = new Sequelize(
+const mainConnection = () => {
+  let sequelize = new Sequelize(
     config.database.main.database,
     config.database.main.username,
     config.database.main.password,
@@ -19,7 +20,7 @@ const mainConnection = (): Sequelize => {
       "port"        : config.database.main.port,
       // "logging"     : (... msg) => console.log(msg),
       // "logging"     : false
-      "models"      : [path.join(__dirname, "../model/entity")]
+      "models"      : [path.join(path.dirname(fileURLToPath(import.meta.url)), "../model/entity")]
     }
   );
 
@@ -43,7 +44,7 @@ const mainConnection = (): Sequelize => {
             drop: false
           }
         });
-      }catch(error: any){
+      }catch(error){
         Log.e(NAMESPACE, error.message);
       }
     })

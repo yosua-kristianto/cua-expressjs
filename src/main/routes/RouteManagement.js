@@ -1,4 +1,4 @@
-import { BaseResponse } from '../model/dto/BaseResponse';
+import { BaseResponse } from '../model/dto/BaseResponse.js';
 import express from 'express';
 const route = express.Router();
 
@@ -14,7 +14,7 @@ const route = express.Router();
 |
 */
 
-import ExampleController from '../api/controller/ExampleController';
+import ExampleController from '../api/controller/ExampleController.js';
 
 // Register your Controller in here
 route.use(ExampleController);
@@ -22,7 +22,7 @@ route.use(ExampleController);
 /**
  * API root point. Just to make sure the API is okay.
  */
- import config from '../config/Config';
+ import config from '../config/Config.js';
  
  route.get('/', (req, res) => {
    const date = new Date();  

@@ -1,15 +1,7 @@
 import { validationResult } from "express-validator";
-import RequestValidationException from "../../common/exception/RequestValidationException";
-import express, {Request} from "express";
+import RequestValidationException from "../../common/exception/RequestValidationException.js";
 
-export abstract class Controller {
-  
-  /**
-   * This is empty
-   */
-  protected doSomething(): void {
-    
-  }
+export class Controller {
 
   
   /**
@@ -24,7 +16,7 @@ export abstract class Controller {
    * 
    * @param request 
    */
-  public requestValidator(request: Request) {
+  requestValidator(request) {
 
     const errors = validationResult(request);
 
