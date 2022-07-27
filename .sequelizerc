@@ -1,0 +1,16 @@
+'use strict';
+
+const path = require('path');
+
+/**
+ * Thanks to
+ * @link https://github.com/eggjs/examples/blob/master/sequelize/.sequelizerc
+ *
+ * @type {{"seeders-path": string, config: string, "migrations-path": string}}
+ */
+module.exports = {
+    "env": 'main',
+    "config": path.join(__dirname, 'src/utilities/database/config/config.cjs'),
+    "migrations-path": path.join(__dirname, 'src/utilities/database/migrations'),
+    "seeders-path": path.join(__dirname, 'src/utilities/database/seeders'),
+};
