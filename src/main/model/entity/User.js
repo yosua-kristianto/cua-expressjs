@@ -1,35 +1,7 @@
-import { DataTypes } from 'sequelize';
+import {DataTypes, Model} from 'sequelize';
+import mainConnection from '../../config/Database.js';
 
-class User extends Model {
-
-  /**
-   * @var array
-   * hidden
-   *  Hide attributes with variable names below
-   */
-  hidden = [
-    'password',
-    'is_deleted'
-  ];
-
-  /**
-   * toJSON
-   *  Sequelize function settings to cast this model
-   *  into JSON
-   */
-  toJSON () {
-    // hide hidden fields
-    let attributes = Object.assign({}, this.get())
-    for (let a of this.hidden) {
-      delete attributes[a]
-    }
-    return attributes
-  }
-
-
-}
-
-User.init({
+const User = mainConnection.define('User', {
   "id": {
     "autoIncrement": true,
     "primaryKey": true,
@@ -71,10 +43,10 @@ User.init({
     }
   }
 }, {
-  "tableName"    : 'users',
-  "timestamps"   : true,
-  "paranoid"     : true,
-  "underscored"  : true
-})
+  "tableName": 'user',
+  "timestamps": false,
+  "paranoid": false,
+  "underscored": true,
+});
 
 export default User;

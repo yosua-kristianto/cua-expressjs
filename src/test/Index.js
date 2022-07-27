@@ -7,9 +7,13 @@ import '../main/config/Database.js';
  * You can specify every unit Tests in here.
  */
 
+import * as exampleTest from './ExampleTest.js'
+import * as userTest from './UserTest.js';
+
 async function main() {
-  await require("./ExampleTest.js");
-  await require("./UserTest.js");
+
+  await exampleTest;
+  await userTest;
 }
 
 main().then(() => { console.log("Testing Done. Use CTRL+C or COMMAND+C to close this test run.") });

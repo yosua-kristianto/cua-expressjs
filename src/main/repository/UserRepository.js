@@ -1,3 +1,5 @@
+import User from "../model/entity/User.js";
+
 class UserRepository {
 
   /**
@@ -47,4 +49,4 @@ class UserRepository {
     
 }
 
-export default new UserRepositoryImpl();
+export default new UserRepository();

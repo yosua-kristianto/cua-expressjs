@@ -1,12 +1,12 @@
 import {ExampleControllerHandler} from "../main/handler/ExampleControllerHandler.js";
-import UserRepositoryImpl from "../main/repository/impl/UserRepositoryImpl.js";
 import {handleTestResult} from "./support/CallbackTemplate.js";
+import UserRepository from "../main/repository/UserRepository.js";
 
 async function main() {
   const exampleHandler = new ExampleControllerHandler();
 
   // Run test to create User
-  await UserRepositoryImpl.createUser({
+  await UserRepository.createUser({
     "email": 'test@gmail.com',
     "phone": '012345678'
   }).then(handleTestResult)

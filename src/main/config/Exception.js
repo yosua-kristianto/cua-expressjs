@@ -1,6 +1,7 @@
 import process from "process";
 import { Log } from "./Logging.js";
-
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { BaseResponse } from '../model/dto/BaseResponse.js';
 
 /**
@@ -56,6 +57,6 @@ export default process.on('uncaughtException', (err, origin) => {
     "UNCAUGHT EXCEPTION", 
     `Caught exception: ${err}\n`
     + `Exception origin: ${JSON.stringify(origin)}\n\n`,
-    __filename
+    path.dirname(fileURLToPath(import.meta.url))
   );
 });
